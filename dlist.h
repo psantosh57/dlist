@@ -55,7 +55,39 @@ private:
 };
 
 template <typename T>
+class dlist_iterator {
+
+public:
+
+	dlist_iterator(node<T>* x = nullptr, dlist<T>& d = false) : _current(x), _obj(d) {};
+	~dlist_iterator() {};
+
+	T& operator*() {
+
+		return (_current->_data);
+
+	}
+
+	dlist_iterator<T>& operator++() {
+
+		_current++;
+		
+
+	}
+
+
+private:
+
+	node<T>* _current;
+	dlist<T> _obj;
+
+
+};
+
+template <typename T>
 class dlist {
+
+	typedef dlist_iterator<T> iterator;
 
 public:
 
@@ -79,6 +111,10 @@ public:
 	int size() { return _num_obj_added; };
 	void display();
 	T& get_data(int index);
+
+	//Iterator methods
+	iterator begin() { return (iterator)(_first); }
+	iterator end() { return (iterator)(); }
 
 private:
 
