@@ -31,11 +31,13 @@ void dlist<T>::append(T& d) {
 template <typename T>
 void dlist<T>::append1(T& d) {
 
+	_num_obj_added++;
 	node<T>* temp = _createNode(d);
 
 	node<T>* f = _first;
 	node<T>* prev = nullptr;
 	node<T>* end = nullptr;
+	//uintptr_t tempPtr;
 
 	//Case for empty list
 	if (!_first) {
@@ -47,11 +49,48 @@ void dlist<T>::append1(T& d) {
 	else {
 
 		//Get the last but 1 node
-		prev = (int)_last->_ptr ^ 0;
-		_last->_ptr = prev ^ temp;
-		temp->_ptr = _last ^ 0;
+		prev = (node<T>*)((uintptr_t)_last->_ptr ^ (uintptr_t) nullptr);
+		_last->_ptr = (node<T>*)((uintptr_t) prev ^ (uintptr_t) temp);
+		//temp->_ptr = (node<T>*)((uintptr_t) _last ^ (uintptr_t) nullptr);
+		temp->_ptr = _last;
+		_last = temp;
 
 	}
+}
+
+template <typename T>
+void dlist<T>::display() {
+
+	node<T>* i = _first;
+	node<T>* prev = nullptr;
+	node<T>* next = (node<T>*)((uintptr_t)prev ^ (uintptr_t)i);
+	while (next) {
+
+		cout << _i << endl;
+	}
+
+}
+
+template <typename T>
+T& dlist<T>::get_data(int index) {
+
+	node<T>* f = _first;
+	node<T>* prev = nullptr;
+
+	index -= 1;
+
+	node<T>* next = (node<T>*)((uintptr_t)prev ^ (uintptr_t)f->_ptr);
+	while (next && index) {
+
+		node<T>* temp = prev;
+		prev = f;
+		f = next;
+		next = (node<T>*)((uintptr_t)prev ^ (uintptr_t)f->_ptr);
+		index--;
+	}
+
+	return f->_data;
+
 }
 
 //EOF

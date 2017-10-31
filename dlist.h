@@ -76,6 +76,9 @@ public:
 	void append(T& d);
 	void append1(T& d);
 	node<T>* _createNode(T& d);
+	int size() { return _num_obj_added; };
+	void display();
+	T& get_data(int index);
 
 private:
 
