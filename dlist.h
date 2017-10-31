@@ -24,7 +24,7 @@ class node {
 
 public:
 
-	node(T& data) : _data(data), _next(nullptr) {
+	node(T& data) : _data(data), _next(nullptr), _ptr(nullptr) {
 
 		cout << "In node const" << endl;
 
@@ -50,6 +50,7 @@ private:
 
 	T _data;
 	node<T>* _next;
+	node<T>* _ptr;
 
 };
 
@@ -73,6 +74,7 @@ public:
 	}
 
 	void append(T& d);
+	void append1(T& d);
 	node<T>* _createNode(T& d);
 
 private:

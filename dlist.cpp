@@ -106,7 +106,7 @@ int main() {
 
   dlist<int> rg(verbose, nullptr, int_descending_order); //ROLDGOLD
   int o(10);
-  rg.append(o);
+  rg.append1(o);
 
   return 0;
 }

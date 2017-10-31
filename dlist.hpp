@@ -28,5 +28,31 @@ void dlist<T>::append(T& d) {
 	_last = temp;
 }
 
+template <typename T>
+void dlist<T>::append1(T& d) {
+
+	node<T>* temp = _createNode(d);
+
+	node<T>* f = _first;
+	node<T>* prev = nullptr;
+	node<T>* end = nullptr;
+
+	//Case for empty list
+	if (!_first) {
+
+		_first = temp;
+		_first->_ptr = nullptr;
+		_last = temp;
+	}
+	else {
+
+		//Get the last but 1 node
+		prev = (int)_last->_ptr ^ 0;
+		_last->_ptr = prev ^ temp;
+		temp->_ptr = _last ^ 0;
+
+	}
+}
+
 //EOF
 
