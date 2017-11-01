@@ -14,6 +14,7 @@ Only includes allowed
 -----------------------------------------------------------------*/
 
 #include "dlist.h"
+#include "vld.h"
 #include "../complex/complex.h"
 #include "../util/util.cpp"
 #include <list>  //FOR STL list. The Standard Template Library's list container is implemented as a doubly linked list

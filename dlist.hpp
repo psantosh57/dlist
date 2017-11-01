@@ -89,5 +89,17 @@ T& dlist<T>::get_data(int index) {
 
 }
 
+template <typename T>
+void dlist<T>::deleteNode(node<T>* t) {
+	_num_obj_freed++;
+	if (_ptr_to_func_to_del_obj) {
+
+		_ptr_to_func_to_del_obj(t->_data);
+	}
+
+	delete(t);
+
+}
+
 //EOF
 

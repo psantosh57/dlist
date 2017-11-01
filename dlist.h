@@ -28,7 +28,7 @@ public:
 
 	~node() {
 
-		_next = 0;
+		_ptr = 0;
 
 	}
 
@@ -107,6 +107,25 @@ public:
 
 		cout << "In dlist dest" << endl;
 
+		node<T>* f = _first;
+		node<T>* prev = nullptr;
+		node<T>* next = (node<T>*)((uintptr_t)prev ^ (uintptr_t) f->_ptr);
+		while (f) {
+
+			node<T>* t = f;
+			//node<T>* p = prev;
+			//f = f->_next
+			f = (node<T>*)((uintptr_t)prev ^ (uintptr_t)f->_ptr);
+			prev = t;
+			deleteNode(t);
+			//node<T>* temp = prev;
+			//prev = f;
+			//f = next;
+			
+		}
+
+		assert(_num_obj_added == _num_obj_freed);
+
 		_first = 0;
 		_last = 0;
 	}
@@ -117,6 +136,7 @@ public:
 	int size() { return _num_obj_added; };
 	void display();
 	T& get_data(int index);
+	void deleteNode(node<T>* t);
 
 	//Iterator methods
 	//iterator begin() { return (iterator)(_first); }
