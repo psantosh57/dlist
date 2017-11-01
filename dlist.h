@@ -24,15 +24,9 @@ class node {
 
 public:
 
-	node(T& data) : _data(data), _next(nullptr), _ptr(nullptr) {
-
-		cout << "In node const" << endl;
-
-	}
+	node(T& data) : _data(data), _ptr(nullptr) {}
 
 	~node() {
-
-		cout << "In node dest" << endl;
 
 		_next = 0;
 
@@ -43,23 +37,24 @@ public:
 	node operator=(const node& n) = delete;
 
 	friend class dlist<T>;
-	friend class dlist_iterator<T>;
+	//friend class dlist_iterator<T>;
 
 
 private:
 
 	T _data;
-	node<T>* _next;
+	//node<T>* _next;
 	node<T>* _ptr;
 
 };
 
+#if 0
 template <typename T>
 class dlist_iterator {
 
 public:
 
-	dlist_iterator(node<T>* x = nullptr, dlist<T>& d = false) : _current(x), _obj(d) {};
+	dlist_iterator(node<T>* x = nullptr, dlist<T>& d = false) : _current(x), _prev(nullptr), _obj(d) {};
 	~dlist_iterator() {};
 
 	T& operator*() {
@@ -70,19 +65,30 @@ public:
 
 	dlist_iterator<T>& operator++() {
 
-		_current++;
-		
+		//_current++;
+		node<T>* temp = _prev;
+		_prev = _current;
+		_current = (node<T>*) ((uintptr_t)_p1 ^ (uintptr_t)_current->_ptr);
+
+		return _current;
 
 	}
+
+	dlist_iterator<T>& operator++(int k) = delete;
+	dlist_iterator<T>& operator--(int k) = delete;
+	dlist_iterator<T>& operator--() = delete;
 
 
 private:
 
 	node<T>* _current;
+	node<T>* _prev;
 	dlist<T> _obj;
 
 
 };
+
+#endif // 0
 
 template <typename T>
 class dlist {
@@ -113,8 +119,8 @@ public:
 	T& get_data(int index);
 
 	//Iterator methods
-	iterator begin() { return (iterator)(_first); }
-	iterator end() { return (iterator)(); }
+	//iterator begin() { return (iterator)(_first); }
+	//iterator end() { return (iterator)(); }
 
 private:
 

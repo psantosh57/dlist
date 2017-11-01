@@ -37,7 +37,6 @@ void dlist<T>::append1(T& d) {
 	node<T>* f = _first;
 	node<T>* prev = nullptr;
 	node<T>* end = nullptr;
-	//uintptr_t tempPtr;
 
 	//Case for empty list
 	if (!_first) {
@@ -51,7 +50,6 @@ void dlist<T>::append1(T& d) {
 		//Get the last but 1 node
 		prev = (node<T>*)((uintptr_t)_last->_ptr ^ (uintptr_t) nullptr);
 		_last->_ptr = (node<T>*)((uintptr_t) prev ^ (uintptr_t) temp);
-		//temp->_ptr = (node<T>*)((uintptr_t) _last ^ (uintptr_t) nullptr);
 		temp->_ptr = _last;
 		_last = temp;
 
@@ -76,8 +74,6 @@ T& dlist<T>::get_data(int index) {
 
 	node<T>* f = _first;
 	node<T>* prev = nullptr;
-
-	index -= 1;
 
 	node<T>* next = (node<T>*)((uintptr_t)prev ^ (uintptr_t)f->_ptr);
 	while (next && index) {
