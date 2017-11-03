@@ -68,7 +68,7 @@ static void test_append(list<T>& g, dlist<T>& rg) {
 	for (int i = 0; i < 1000; ++i) {
 		T o(i);
 		g.push_back(o);
-		rg.append1(o);
+		rg.append(o);
 	}
 	assertlist(g, rg);
 	cout << "Your append function works as expected\n";

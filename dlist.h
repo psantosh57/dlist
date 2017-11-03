@@ -43,7 +43,6 @@ public:
 private:
 
 	T _data;
-	//node<T>* _next;
 	node<T>* _ptr;
 
 };

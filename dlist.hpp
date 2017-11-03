@@ -14,23 +14,6 @@ node<T>* dlist<T>::_createNode(T& d) {
 template <typename T>
 void dlist<T>::append(T& d) {
 
-	node<T>* temp = _createNode(d);
-
-	if (!_first) {
-
-		_first = temp;
-	}
-	else {
-
-		_last->_next = temp;
-	}
-	
-	_last = temp;
-}
-
-template <typename T>
-void dlist<T>::append1(T& d) {
-
 	_num_obj_added++;
 	node<T>* temp = _createNode(d);
 
